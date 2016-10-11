@@ -22,7 +22,7 @@ app.controller("RoomCtrl", function($scope, $firebaseArray) {
     });
     $scope.newRoomText = '';
   };
-
+ 
   // $scope.addRoomMessage = function(roomId) {
   //   var messagesRef = firebase.database().ref().child("rooms/" + roomId + "/messages");
   //   $scope.roomMessages = $firebaseArray(messagesRef);
