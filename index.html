@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BlocChat">
   <head lang="en">
     <meta charset="UTF-8">
-    <title>Project Title (change me)</title>
+    <title>Bloc Chat</title>
     <!-- LINK TAGS TO INCLUDE EXTERNAL CSS FILES (e.g. FROM CDNs) -->
 
     <!-- LINK TAGS TO INCLUDE INTERNAL CSS FILES WITHIN THE "styles" DIRECTORY -->
     <link href="/styles/style.css" rel="stylesheet">
 
   </head>
-  <body>
-    Project Body Text (change me)
+  <body ng-controller="RoomCtrl">
+    <ul>
+      <li ng-repeat="room in rooms">
+        <!-- edit a room -->
+        <input ng-model="room.text" ng-change="rooms.$save(room)" />
+        <!-- delete a room -->
+        <button ng-click="rooms.$remove(room)">Delete Room</button>
+      </li>
+    </ul>
+    <!-- push a new room onto the array -->
+    <form ng-submit="addRoom()">
+      <input ng-model="newRoomText" />
+      <button type="submit">Add Room</button>
+    </form>
 
     <!-- SCRIPT TAGS TO INCLUDE EXTERNAL JAVASCRIPT FILES (e.g. FROM CDNs) -->
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
 
     <!-- SCRIPT TAGS TO INCLUDE INTERNAL JAVASCRIPT FILES WITHIN THE "scripts" DIRECTORY -->
     <script src="/scripts/app.js"></script>
