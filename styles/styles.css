@@ -9,23 +9,28 @@
   position: fixed;
 }
 
+
 .title {
   margin-left: 2rem;
   color: white;
   font-family: "Times New Roman";
   letter-spacing: 2px;
   font-size: 40px;
-
 }
 
 .addRoom {
 margin-left: 1.7rem;
-
 }
 
 .roomList {
   list-style: none;
   margin-left: -.85rem;
+}
+
+.messageList {
+  list-style: none;
+  margin-right: 2.5rem;
+
 }
 
 button {
@@ -42,11 +47,21 @@ button {
 .addButton {
   padding-left: 16.4px;
   padding-right: 16.4px;
+  margin: 0 auto;
 }
 
+
 input {
-height: 28px;
-font-size: 14px;
-margin: 2px;
+  height: 28px;
+  font-size: 14px;
+  margin: 2px;
+}
+
+.messagesSection {
+  /*float: right;*/
+  position: relative;
+  text-align: center;
+  margin: 67px 100px;
+  min-width: 800px;
 
 }
