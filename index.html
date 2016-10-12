@@ -9,8 +9,19 @@
     <link href="/styles/style.css" rel="stylesheet">
 
   </head>
+
+
   <body ng-controller="RoomCtrl">
-    <ul>
+    <aside class="sideBar">
+    <h1 class="title"> Bloc Chat</h1>
+
+    <!-- push a new room onto the array -->
+    <form class="addRoom" ng-submit="addRoom()">
+      <input ng-model="newRoomText" />
+      <button class="modal-sm addButton" data-toggle="modal" data-target="RoomCtrl" type="submit">Add Room</button>
+    </form>
+
+    <ul class="roomList">
       <li ng-repeat="room in rooms">
         <!-- edit a room -->
         <input ng-model="room.text" ng-change="rooms.$save(room)" />
@@ -18,25 +29,26 @@
         <button ng-click="rooms.$remove(room)">Delete Room</button>
       </li>
     </ul>
-    <!-- push a new room onto the array -->
-    <form ng-submit="addRoom()">
-      <input ng-model="newRoomText" />
-      <button type="submit">Add Room</button>
-    </form>
+  </aside>
+
+
+
+
+
+
 
     <!-- SCRIPT TAGS TO INCLUDE EXTERNAL JAVASCRIPT FILES (e.g. FROM CDNs) -->
 
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
-
     <!-- AngularFire -->
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
-
+    <!--Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- SCRIPT TAGS TO INCLUDE INTERNAL JAVASCRIPT FILES WITHIN THE "scripts" DIRECTORY -->
     <script src="/scripts/app.js"></script>
-
+    <script src="/scripts/newRoomCtrl.js"></script>
   </body>
 </html>

@@ -8,21 +8,8 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var app = angular.module("BlocChat", ["firebase"]);
 
-app.controller("RoomCtrl", function($scope, $firebaseArray) {
-  var ref = firebase.database().ref().child("rooms");
-  // create a synchronized array
-  $scope.rooms = $firebaseArray(ref);
-  // add new items to the array
-  // the room is automatically added to our Firebase database!
-  $scope.addRoom = function() {
-    $scope.rooms.$add({
-      text: $scope.newRoomText
-    });
-    $scope.newRoomText = '';
-  };
- 
+
   // $scope.addRoomMessage = function(roomId) {
   //   var messagesRef = firebase.database().ref().child("rooms/" + roomId + "/messages");
   //   $scope.roomMessages = $firebaseArray(messagesRef);
@@ -34,4 +21,4 @@ app.controller("RoomCtrl", function($scope, $firebaseArray) {
   //   $scope.newRoomMessageText = '';
   // };
   // click on `index.html` above to see $remove() and $save() in action
-});
+// });

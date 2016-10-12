@@ -1,0 +1,52 @@
+ .sideBar{
+  background-color: #F56960;
+  width: 33.3%;
+  max-width: 300px;
+  min-width: 300px;
+  height: 800px;
+  top: 0;
+  left: 0;
+  position: fixed;
+}
+
+.title {
+  margin-left: 2rem;
+  color: white;
+  font-family: "Times New Roman";
+  letter-spacing: 2px;
+  font-size: 40px;
+
+}
+
+.addRoom {
+margin-left: 1.7rem;
+
+}
+
+.roomList {
+  list-style: none;
+  margin-left: -.85rem;
+}
+
+button {
+  color:#333;
+  text-shadow:1px 1px #fff;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 0.25em;
+  background: #f8f8f8;
+  border:1px solid #ccc;
+  border-right:0.25em solid #00558D; /* blue stripe */
+}
+
+.addButton {
+  padding-left: 16.4px;
+  padding-right: 16.4px;
+}
+
+input {
+height: 28px;
+font-size: 14px;
+margin: 2px;
+
+}
