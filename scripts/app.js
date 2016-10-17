@@ -7,27 +7,45 @@ var config = {
   messagingSenderId: "182689576764"
 };
 firebase.initializeApp(config);
-
 var app = angular.module("BlocChat", ["firebase"]);
+
 
 app.controller("RoomCtrl", function($scope, $firebaseArray) {
   var ref = firebase.database().ref().child("rooms");
   // create a synchronized array
   $scope.rooms = $firebaseArray(ref);
+  // console.log($scope.rooms);
+  $scope.rooms.$loaded(function (list) {
+    // console.log(list.$keyAt(list[0]));
+    $scope.currentRoom = $scope.rooms.$getRecord(list.$keyAt(list[0]));
+  });
+  // $scope.currentRoom = $scope.rooms.$getRecord($scope.rooms.$keyAt(0));
+
+  $scope.setCurrentRoom = function(room) {
+    //find the $id of the room
+    $scope.currentRoom = room;
+    console.log(room);
+  };
 
   // add new items to the array
   // the room is automatically added to our Firebase database!
-  $scope.addRoom = function() {
+  $scope.addRoom = function(newRoomText) {
     $scope.rooms.$add({
-      text: $scope.newRoomText
+      text: $scope.newRoomText,
     });
     $scope.newRoomText = '';
   };
 
-//new room message
+
+  //new room message
   $scope.addRoomMessage = function(roomId) {
-    var messagesRef = firebase.database().ref().child("rooms/" + roomId);
+
+    // $scope.currentRoom = room;
+    // $scope.currentRoomName = room.name;
+
+    var messagesRef = firebase.database().ref().child("rooms/" + roomId + "/messages");
     $scope.roomMessages = $firebaseArray(messagesRef);
+
 
     $scope.roomMessages.$add({
       text: $scope.newRoomMessageText
@@ -35,11 +53,5 @@ app.controller("RoomCtrl", function($scope, $firebaseArray) {
     $scope.newRoomMessageText = '';
   };
   // click on `index.html` above to see $remove() and $save() in action
-
-//getMessage
-  // $scope.getMessages = function(room) {
-  //   $scope.currentRoom = room;
-  //
-  // }
 
 });

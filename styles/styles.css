@@ -1,67 +1,125 @@
  .sideBar{
   background-color: #F56960;
-  width: 33.3%;
-  max-width: 300px;
-  min-width: 300px;
-  height: 800px;
+  /*width: 33.3%;
+  max-width: 300px;*/
+  /*min-width: 300px;*/
+  height: 100%;
   top: 0;
   left: 0;
   position: fixed;
+  /*height: 100%;*/
+  /*min-height: 100%;*/
 }
 
-
+/*bloc chat title*/
 .title {
-  margin-left: 2rem;
+  /*margin-left: 2rem;*/
   color: white;
   font-family: "Times New Roman";
   letter-spacing: 2px;
   font-size: 40px;
 }
 
-.addRoom {
-margin-left: 1.7rem;
+
+/*.addRoom {
+margin-right: 20px;
+float: right;
 }
 
 .roomList {
   list-style: none;
-  margin-left: -.85rem;
+  margin-right: 20px;
+  float: right;
+}*/
+
+.roomName {
+  color: white;
+  font-weight: bolder;
+  font-size: 15px;
+  cursor: pointer;
 }
 
 .messageList {
   list-style: none;
-  margin-right: 2.5rem;
-
+  /*margin-right: 2.5rem;*/
 }
 
 button {
   color:#333;
   text-shadow:1px 1px #fff;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 0.25em;
+  /*padding: 10px;
+  border-radius: 0.25em;*/
   background: #f8f8f8;
   border:1px solid #ccc;
   border-right:0.25em solid #00558D; /* blue stripe */
 }
 
-.addButton {
+/*#addRoomBtn {
   padding-left: 16.4px;
   padding-right: 16.4px;
-  margin: 0 auto;
-}
+}*/
 
+.deleteRoomBtn {
+  color:#333;
+  text-shadow:1px 1px #fff;
+  text-decoration: none;
+  /*padding: 4px;*/
+  border-radius: 0.25em;
+  background: #f8f8f8;
+  border:1px solid #ccc;
+  border-right:0.25em solid #00558D;
+}
 
 input {
   height: 28px;
   font-size: 14px;
-  margin: 2px;
+  /*margin: 2px;*/
 }
 
-.messagesSection {
-  /*float: right;*/
-  position: relative;
+.addMessage {
+  position: fixed;
+  float: right;
+  bottom:0px;
+  width:75%;
   text-align: center;
-  margin: 67px 100px;
-  min-width: 800px;
+}
 
+.newMessageInput {
+  height: 28px;
+  font-size: 14px;
+  width: 75%;
+}
+
+
+.messageInput {
+  width: 75%;
+}
+
+.row {
+  text-align: center;
+}
+
+.fill {
+    min-height: 100%;
+    height: 100%;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container {
+  text-align: center;
+}
+
+.roomNumberTitle {
+  display: inline-block;
+  text-align: center;
+  margin 0 auto;
+}
+*, *::before, *::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }

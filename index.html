@@ -8,47 +8,56 @@
     <!-- LINK TAGS TO INCLUDE EXTERNAL CSS FILES (e.g. FROM CDNs) -->
 
     <!-- LINK TAGS TO INCLUDE INTERNAL CSS FILES WITHIN THE "styles" DIRECTORY -->
-    <link href="/styles/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/styles/styles.css" rel="stylesheet">
   </head>
 
   <body ng-controller="RoomCtrl">
-      <aside class="sideBar">
+    <aside class="sideBar col-xs-3">
       <h1 class="title"> Bloc Chat</h1>
 
       <!-- push a new room onto the array -->
-      <form class="addRoom">
+      <form id="addRoomBtn" class="addRoom()">
         <button class="addButton" data-toggle="modal" data-target="#myModal" type="submit">Add Room</button>
       </form>
 
       <ul class="roomList">
-        <li ng-repeat="room in rooms">
+          <!-- <li ng-repeat="room in rooms"> -->
           <!-- edit a room -->
-          <input ng-model="room.text" ng-change="rooms.$save(room)" />
+          <li ng-repeat="room in rooms">
+            <a href="#" class="roomName" ng-click="setCurrentRoom(room)"> {{ room.text }}</a>
           <!-- delete a room -->
-          <button ng-click="rooms.$remove(room)">Delete Room</button>
+            <button class="deleteRoomBtn" ng-click="rooms.$remove(room)">Delete</button>
+
         </li>
       </ul>
     </aside>
+    <div class="container fill col-xs-9 col-xs-offset-3">
+      <div class="row">
+
+        <section class="messagesSection">
+          <h1 class="roomNumberTitle">{{ currentRoom.text }}</h1>
+            <form class="addMessage" ng-submit="addRoomMessage(currentRoom.$id)">
+              <input class="newMessageInput" ng-model="newRoomMessageText" />
+              <button class="addButton" type="submit">Add Message</button>
+            </form>
+
+            <ul class="messageList">
+              <li ng-repeat="message in currentRoom.messages"</li>
+                <!--edit a message -->
+                <input class="messageInput" ng-model="message.text" ng-change="roomMessages.$save(message)" />
+                <!--delete a message -->
+                <button ng-click="roomMessages.$remove(message)">Delete Message</button>
+              </li>
+            </ul>
+        </section>
+      </div>
+    </div>
+
 
 <!--message section -->
 
-    <section class="messagesSection">
-      <h1 class="roomNumberTitle">Room 1</h1>
-        <form class="addMessage" ng-submit="addRoomMessage()">
-          <input ng-model="newRoomMessageText" />
-          <button class="addButton" type="submit">Add Message</button>
-        </form>
 
-        <ul class="messageList">
-          <li ng-repeat="message in roomMessages"</li>
-            <!--edit a message -->
-            <input ng-model="message.text" ng-change="roomMessages.$save(message)" />
-            <!--delete a message -->
-            <button ng-click="roomMessages.$remove(message)">Delete Message</button>
-          </li>
-        </ul>
-    </section>
 
 <!--modal -->
   <div id="myModal" class="modal fade" role="dialog">
