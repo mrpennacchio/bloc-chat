@@ -7,23 +7,65 @@ var config = {
   messagingSenderId: "182689576764"
 };
 firebase.initializeApp(config);
-var app = angular.module("BlocChat", ["firebase"]);
+var app = angular.module("BlocChat", ["firebase", "ngCookies", "ngRoute"]);
+app.config(function ($routeProvider) {
+    $routeProvider
+    .when('/', {
+      // templateUrl: 'views/main.html',
+      controller: 'RoomCtrl'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+  });
+app.run(['$cookies',
+    function BlocChatCookies($cookies) {
+        var currentUser = $cookies.get('blocChatCurrentUser');
 
+        if (!$cookies.blocChatCurrentUser || $cookies.blocChatCurrentUser === '') {
+          console.dir($('#myModal2'));
+          console.log(currentUser);
+            $('#myModal2').modal({backdrop:'static'});
+            $('#myModal2').modal('show');
+        }
 
-app.controller("RoomCtrl", function($scope, $firebaseArray) {
+    }
+]);
+
+app.controller("RoomCtrl", function($scope, $cookies, $firebaseArray) {
   var ref = firebase.database().ref().child("rooms");
   // create a synchronized array
   $scope.rooms = $firebaseArray(ref);
-  // console.log($scope.rooms);
+
+
+
+  //new User
+    $scope.newUserName = $cookies.get('blocChatCurrentUser');
+    $scope.addUser = function(name) {
+      // $cookies.put('blocChatCurrentUser', name);
+
+      console.log(name);
+      if (name === undefined) {
+        $('#myModal2').modal({backdrop:'static'});
+        $('#myModal2').modal('show');
+      } else {
+        $cookies.put('blocChatCurrentUser', name);
+        $scope.newName = '';
+        $('#myModal2').modal('hide');
+      }
+    };
+
+
+
+    //load page with first chatroom
   $scope.rooms.$loaded(function (list) {
-    // console.log(list.$keyAt(list[0]));
     $scope.currentRoom = $scope.rooms.$getRecord(list.$keyAt(list[0]));
   });
-  // $scope.currentRoom = $scope.rooms.$getRecord($scope.rooms.$keyAt(0));
 
   $scope.setCurrentRoom = function(room) {
     //find the $id of the room
     $scope.currentRoom = room;
+
     console.log(room);
   };
 
@@ -40,18 +82,17 @@ app.controller("RoomCtrl", function($scope, $firebaseArray) {
   //new room message
   $scope.addRoomMessage = function(roomId) {
 
-    // $scope.currentRoom = room;
-    // $scope.currentRoomName = room.name;
-
     var messagesRef = firebase.database().ref().child("rooms/" + roomId + "/messages");
     $scope.roomMessages = $firebaseArray(messagesRef);
-
-
+    //add new room message
     $scope.roomMessages.$add({
-      text: $scope.newRoomMessageText
-    });
+      text: $scope.newRoomMessageText,
+      name: $cookies.get('blocChatCurrentUser')
+        });
     $scope.newRoomMessageText = '';
   };
   // click on `index.html` above to see $remove() and $save() in action
+
+
 
 });

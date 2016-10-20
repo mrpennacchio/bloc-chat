@@ -1,5 +1,5 @@
  .sideBar{
-  background-color: #F56960;
+  background-color: #A7D2CB;
   /*width: 33.3%;
   max-width: 300px;*/
   /*min-width: 300px;*/
@@ -19,28 +19,55 @@
   letter-spacing: 2px;
   font-size: 40px;
 }
-
-
-/*.addRoom {
-margin-right: 20px;
-float: right;
+.modalTwoText {
+  color: white;
 }
+
 
 .roomList {
   list-style: none;
-  margin-right: 20px;
-  float: right;
-}*/
+  margin-top: 20px;
+  display: table;
+
+}
 
 .roomName {
   color: white;
+  margin: 0 0 10px 0;
   font-weight: bolder;
   font-size: 15px;
   cursor: pointer;
+  font-family: "Times New Roman";
+  vertical-align: middle;
+  display: table-cell;
+
+}
+
+.userNameTitle{
+  color: white;
+  font-family: "Times New Roman";
+}
+
+.userNameMessages {
+  float: left;
+  margin-left: 50px;
+  margin-top: 10px;
+  vertical-align: middle;
+  text-align: center;
+  font-family: "Times New Roman";
+}
+
+.oddMessage {
+  background-color: #F2D388;
+}
+
+.evenMessage {
+  background-color: white;
 }
 
 .messageList {
   list-style: none;
+
   /*margin-right: 2.5rem;*/
 }
 
@@ -53,23 +80,17 @@ button {
   background: #f8f8f8;
   border:1px solid #ccc;
   border-right:0.25em solid #00558D; /* blue stripe */
+  border-radius: 5px;
 }
 
-/*#addRoomBtn {
-  padding-left: 16.4px;
-  padding-right: 16.4px;
-}*/
 
-.deleteRoomBtn {
-  color:#333;
-  text-shadow:1px 1px #fff;
-  text-decoration: none;
-  /*padding: 4px;*/
-  border-radius: 0.25em;
-  background: #f8f8f8;
-  border:1px solid #ccc;
-  border-right:0.25em solid #00558D;
+.ion-android-remove-circle {
+  margin-top: 5px;
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
 }
+
 
 input {
   height: 28px;
@@ -80,20 +101,40 @@ input {
 .addMessage {
   position: fixed;
   float: right;
-  bottom:0px;
+  bottom: 11px;
   width:75%;
   text-align: center;
+  display: table;
+}
+
+.ion-ios-paperplane {
+  font-size: 20px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+
 }
 
 .newMessageInput {
-  height: 28px;
+  height: 40px;
   font-size: 14px;
   width: 75%;
+  border-radius: 10px;
+  vertical-align: middle;
+
 }
 
+.sendMessage {
+  margin-left: 5px;
+  vertical-align: middle;
+  border-radius: 5px;
+
+}
 
 .messageInput {
-  width: 75%;
+  width: 100%;
+  padding: 10px;
+  margin: 0;
 }
 
 .row {

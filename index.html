@@ -9,25 +9,31 @@
 
     <!-- LINK TAGS TO INCLUDE INTERNAL CSS FILES WITHIN THE "styles" DIRECTORY -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link href="/styles/styles.css" rel="stylesheet">
+    <link href="/styles/animate.css" rel="stylesheet">
   </head>
 
   <body ng-controller="RoomCtrl">
     <aside class="sideBar col-xs-3">
-      <h1 class="title"> Bloc Chat</h1>
+        <h1 class="title"> Bloc Chat</h1>
+        <h4 class="userNameTitle ion-person" ng-model="newUserName"> {{ newUserName }}</h4>
+
 
       <!-- push a new room onto the array -->
       <form id="addRoomBtn" class="addRoom()">
-        <button class="addButton" data-toggle="modal" data-target="#myModal" type="submit">Add Room</button>
+        <a href="#/"><button class="addButton" data-toggle="modal" data-target="#myModal" type="submit">Add Room</button></a>
+        <button class="addButton" data-toggle="modal" data-target="#myModal2" type="submit">Add Username</button>
+
       </form>
 
       <ul class="roomList">
           <!-- <li ng-repeat="room in rooms"> -->
           <!-- edit a room -->
-          <li ng-repeat="room in rooms">
+          <li class = "roomList" ng-repeat="room in rooms">
             <a href="#" class="roomName" ng-click="setCurrentRoom(room)"> {{ room.text }}</a>
           <!-- delete a room -->
-            <button class="deleteRoomBtn" ng-click="rooms.$remove(room)">Delete</button>
+            <span class="ion-android-remove-circle fadeOutRight" ng-click="rooms.$remove(room)"></span>
 
         </li>
       </ul>
@@ -37,19 +43,22 @@
 
         <section class="messagesSection">
           <h1 class="roomNumberTitle">{{ currentRoom.text }}</h1>
+
             <form class="addMessage" ng-submit="addRoomMessage(currentRoom.$id)">
-              <input class="newMessageInput" ng-model="newRoomMessageText" />
-              <button class="addButton" type="submit">Add Message</button>
+              <input placeholder="Enter Message Here" class="newMessageInput" ng-model="newRoomMessageText" />
+                <button class="addButton sendMessage"><span class="ion-ios-paperplane" type="submit">send</span></button>
             </form>
 
-            <ul class="messageList">
+            <div class="messageList">
               <li ng-repeat="message in currentRoom.messages"</li>
                 <!--edit a message -->
-                <input class="messageInput" ng-model="message.text" ng-change="roomMessages.$save(message)" />
+                  <ul ng-class-even="'evenMessage'" ng-class-odd="'oddMessage'" class="userNameMessages">{{message.name}}</ul>
+                  <ul ng-class-even="'evenMessage'" ng-class-odd="'oddMessage'" class="messageInput" ng-model="message.text" ng-change="roomMessages.$save(message)">{{message.text}} </ul>
+                </span>
                 <!--delete a message -->
-                <button ng-click="roomMessages.$remove(message)">Delete Message</button>
+                <!-- <button ng-click="currentRoom.messages.$remove(message)">Delete Message</button> -->
               </li>
-            </ul>
+            </div>
         </section>
       </div>
     </div>
@@ -61,7 +70,7 @@
 
 <!--modal -->
   <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog"> 
+    <div class="modal-dialog">
 <!--modal-content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -80,12 +89,33 @@
   </div>
 </div>
 
+  <!--newUserModal -->
+<div id="myModal2" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!--modalContent-->
+    <div class-"modal-content">
+      <div class="modal-header">
+        <button type="button" class="close modalTwoText" data-dismiss="modal">Close</button>
+        <h4 class="modal-title modalTwoText">Enter Username</h4>
+      </div>
+      <div class="modal-body">
+        <p for "newName" class="modalTwoText">Choose Your User Name</p>
+        <input placeholder="Enter Username" type="text" ng-model="newName" />
+      </div>
+    </div class="modal-footer">
+      <!-- <button type="button" class="addButton" data-dismiss="modal">Close</button> -->
+      <button type="button" class="addButton" data-dismiss="modal" ng-click="addUser(newName)">Add Username</button>
+    </div>
+  </div>
+</div>
 
 
     <!-- SCRIPT TAGS TO INCLUDE EXTERNAL JAVASCRIPT FILES (e.g. FROM CDNs) -->
 
     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
     <!-- AngularFire -->
@@ -94,7 +124,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- SCRIPT TAGS TO INCLUDE INTERNAL JAVASCRIPT FILES WITHIN THE "scripts" DIRECTORY -->
+    <script src="/scripts/cookieController.js"></script>
     <script src="/scripts/app.js"></script>
+
 
   </body>
 </html>
