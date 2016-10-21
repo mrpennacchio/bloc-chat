@@ -50,6 +50,7 @@
 
 .userNameMessages {
   float: left;
+  padding-right: 5px;
   margin-left: 50px;
   margin-top: 10px;
   vertical-align: middle;
@@ -135,6 +136,7 @@ input {
   width: 100%;
   padding: 10px;
   margin: 0;
+
 }
 
 .row {

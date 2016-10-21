@@ -22,7 +22,7 @@ app.run(['$cookies',
     function BlocChatCookies($cookies) {
         var currentUser = $cookies.get('blocChatCurrentUser');
 
-        if (!$cookies.blocChatCurrentUser || $cookies.blocChatCurrentUser === '') {
+        if (!currentUser || currentUser === '') {
           console.dir($('#myModal2'));
           console.log(currentUser);
             $('#myModal2').modal({backdrop:'static'});
